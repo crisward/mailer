@@ -1,0 +1,9 @@
+name: mailer
+version: 0.1.0
+
+authors:
+  - Cris Ward 
+
+crystal: 0.23.1
+
+license: MIT
