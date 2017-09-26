@@ -50,6 +50,14 @@ SENDGRID_KEY="your-api-key" EMAIL="your@email.com" crystal spec
 
 ```
 
+
+## Todo
+
+This library isn't full baked. It works, but there are some thing which need adding
+- [ ] Error Handling
+- [ ] Logging
+- [ ] Adding SMTP option
+
 ## Contributing
 
 1. Fork it ( https://github.com/[your-github-name]/mailer/fork )
