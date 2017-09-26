@@ -7,7 +7,7 @@ require "./provider"
     # Setup mailgun library with your api key and domain
     #
     # ```crystal
-    # Mailer::Mailgun.setup(key: "your-key-here", domain: "mg.duodesign.co.uk")
+    # Mailer::Mailgun.setup(key: "your-key-here", domain: "your-domain")
     # ```
     def initialize(key, domain)
       @apikey = key
