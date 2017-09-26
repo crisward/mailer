@@ -7,14 +7,13 @@ require "http"
 # ```crystal
 # Mailer.config(provider: Mailer::Mailgun.new(apikey, domain))
 # email = Mailer::Message.new
-# email.to("bill@microsoft.com", "Cris Ward")
-# email.to("steve@apple.com")
-# email.from("linus@linux.org")
-# email.subject("Hello")
+# email.to("them@somedomain.com","their_name")
+# email.from = "you@yourdomain.com"
+# email.subject = "Hello"
 # email.text = "Some plain text messaeg"
-# email.html = "<p>Some html message <img src='cid:hello.jpg'></p>"
-# email.attachment = Mailer::Attachment.new(filename:"logo.jpg" , path: "./storage/public/images/logo.jpg")
-# email.inline("./storage/public/images/hello.jpg")
+# email.html = "<p>Some html message <img src='cid:logo.jpg'></p>"
+# email.attachment = Mailer::Attachment.new(filename: "test.pdf" , path: "./spec/test.pdf")
+# email.inline = Mailer::Attachment.new(filename: "logo.jpg" , path: "./spec/test.png")
 # email.send
 # ```
 module Mailer
