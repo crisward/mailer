@@ -38,7 +38,7 @@ email.send
 
 Running tests
 
-```
+```bash
 # mock
 crystal spec
 
@@ -60,4 +60,4 @@ SENDGRID_KEY="your-api-key" EMAIL="your@email.com" crystal spec
 
 ## Contributors
 
-- [crisward](https://github.com/crisward) Cris Ward - creator, maintainer
+- [Cris Ward](https://github.com/crisward) - creator, maintainer
