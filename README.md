@@ -4,6 +4,8 @@ This project aims to provide a common api for popular email providers. It curren
 * Mailgun
 * Sendgrid
 
+I also plan to add a wrapper for [SMTP](https://github.com/arcage/crystal-email)
+
 ## Installation
 
 Add this to your application's `shard.yml`:
@@ -58,4 +60,4 @@ SENDGRID_KEY="your-api-key" EMAIL="your@email.com" crystal spec
 
 ## Contributors
 
-- [[crisward]](https://github.com/crisward) Cris Ward - creator, maintainer
+- [crisward](https://github.com/crisward) Cris Ward - creator, maintainer
