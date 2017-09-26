@@ -33,6 +33,12 @@ email.inline = Mailer::Attachment.new(filename: "logo.jpg" , path: "./spec/test.
 email.send
 ```
 
+To use sendgrid, swap the first line to
+
+```
+Mailer.config(provider: Mailer::Sendgrid.new(key: "your sendgrid api key"))
+```
+
 
 ## Development
 
