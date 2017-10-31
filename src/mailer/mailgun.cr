@@ -56,13 +56,11 @@ require "./provider"
       client = HTTP::Client.new("api.mailgun.net", tls: true)
       client.basic_auth("api", @apikey)
       message = io.to_s
-      if ENV["KEMAL_ENV"]? != "test" # prevent accidental email sending in kemal
-        client.post("/v3/#{@domain}/messages", headers: HTTP::Headers{"Host" => "localhost", "Content-Type" => m.content_type("form-data"), "Content-Length" => message.size.to_s}, body: message) do |response|
-          if response && response.status_code == 200
-            return {"status" => "success", "data" => JSON.parse(response.body_io.gets_to_end)}
-          else
-            return {"status" => "failed", "data" => JSON.parse(response.body_io.gets_to_end)}
-          end
+      client.post("/v3/#{@domain}/messages", headers: HTTP::Headers{"Host" => "localhost", "Content-Type" => m.content_type("form-data"), "Content-Length" => message.size.to_s}, body: message) do |response|
+        if response && response.status_code == 200
+          return {"status" => "success", "data" => JSON.parse(response.body_io.gets_to_end)}
+        else
+          return {"status" => "failed", "data" => JSON.parse(response.body_io.gets_to_end)}
         end
       end
     end
