@@ -39,6 +39,19 @@ To use sendgrid, swap the first line to
 Mailer.config(provider: Mailer::Sendgrid.new(key: "your sendgrid api key"))
 ```
 
+## Testing Your App
+
+While testing your app, you probably won't want to send real emails.
+You can use the built in Mock provider for this.
+
+```
+# eg for kemal
+if ENV["KEMAL_ENV"]? != "test"
+  Mailer.config(provider: Mailer::Mailgun.new(key: ENV["MAILGUN_KEY"], domain: ENV["MAILGUN_DOMAIN"]))
+else
+  Mailer.config(provider:Mailer::Mock.new())
+end
+```
 
 ## Development
 
