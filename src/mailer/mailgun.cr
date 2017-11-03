@@ -58,9 +58,9 @@ require "./provider"
       message = io.to_s
       client.post("/v3/#{@domain}/messages", headers: HTTP::Headers{"Host" => "localhost", "Content-Type" => m.content_type("form-data"), "Content-Length" => message.size.to_s}, body: message) do |response|
         if response && response.status_code == 200
-          return {"status" => "success", "data" => JSON.parse(response.body_io.gets_to_end)}
+          return JSON.parse(response.body_io.gets_to_end)["id"].to_s
         else
-          return {"status" => "failed", "data" => JSON.parse(response.body_io.gets_to_end)}
+          raise(response.body_io.gets_to_end)
         end
       end
     end

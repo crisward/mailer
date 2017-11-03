@@ -20,7 +20,7 @@ describe Mailer do
   end
 
   if ENV["MAILGUN_KEY"]? && ENV["MAILGUN_DOMAIN"]? && ENV["EMAIL"]? 
-    it "test mock driver" do
+    it "it should send a real email and return a email id" do
       Mailer.config(provider: Mailer::Mailgun.new(key: ENV["MAILGUN_KEY"], domain: ENV["MAILGUN_DOMAIN"]))
       email = Mailer::Message.new
       email.to(ENV["EMAIL"])
@@ -30,8 +30,30 @@ describe Mailer do
       email.html = "<p>Some html message <img src='cid:logo.jpg'></p>"
       email.attachment = Mailer::Attachment.new(filename: "test.pdf" , path: "./spec/test.pdf")
       email.inline = Mailer::Attachment.new(filename: "logo.jpg" , path: "./spec/test.png")
-      p email.send
-      p "check your email - it should have been sent via mailgun"
+      id = email.send
+      id.should contain(ENV["MAILGUN_DOMAIN"])
+    end
+    
+    it "should raise when api key is wrong using send" do 
+      Mailer.config(provider: Mailer::Mailgun.new(key: "blahblah", domain: ENV["MAILGUN_DOMAIN"]))
+      email = Mailer::Message.new
+      email.to(ENV["EMAIL"])
+      email.from = ENV["EMAIL"]
+      email.subject = "Hello"
+      email.text = "Some plain text messaeg"
+      expect_raises(Exception) do 
+        email.send
+      end
+    end
+
+    it "should return nil when api key is wrong using send?" do 
+      Mailer.config(provider: Mailer::Mailgun.new(key: "blahblah", domain: ENV["MAILGUN_DOMAIN"]))
+      email = Mailer::Message.new
+      email.to(ENV["EMAIL"])
+      email.from = ENV["EMAIL"]
+      email.subject = "Hello"
+      email.text = "Some plain text messaeg"
+      email.send?.should be_nil
     end
   end
 

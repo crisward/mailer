@@ -154,7 +154,7 @@ module Mailer
       @inline << attachment
     end
 
-    # Sends the email
+    # Sends the email, raises if the send fails, returns message info on success
     #
     # ```
     # email.send
@@ -163,6 +163,20 @@ module Mailer
       provider = Mailer.provider
       raise "You have not setup a mail provider" if !provider
       provider.send(self)
+    end
+
+    # Sends the email, returns message info on success, null on fail
+    #
+    # ```
+    # email.send?
+    # ```
+    def send?
+      begin 
+        info = send 
+      rescue 
+        return nil
+      end
+      return info
     end
   end
 end
