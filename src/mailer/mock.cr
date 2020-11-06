@@ -22,7 +22,7 @@ module Mailer
       attachments = message.attachments
       inline = message.inline
       io = IO::Memory.new
-      m = HTTP::Multipart::Builder.new(io)
+      m = MIME::Multipart::Builder.new(io)
       m.content_type("form-data")
       add m, "from", message.from
       add m, "to", to
