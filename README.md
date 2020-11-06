@@ -1,10 +1,11 @@
+(Forked from https://github.com/crisward/mailer but updated to be compatible with crystal 0.35.1  aka I did not write this. Maintainence only, fork away.)
+
 # Mailer
 
 This project aims to provide a common api for popular email providers. It currently supports
 * Mailgun
 * Sendgrid
 
-I also plan to add a wrapper for [SMTP](https://github.com/arcage/crystal-email)
 
 ## Installation
 
